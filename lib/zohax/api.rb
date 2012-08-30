@@ -7,9 +7,10 @@ module Zohax
 
     attr_reader :auth_token
 
-    def initialize(username, password)
+    def initialize(username, password, auth_token)
       @username = username
       @password = password
+      @auth_token = auth_token
     end
 
     def auth_url
@@ -29,12 +30,43 @@ module Zohax
     end
 
     def get_record_by_id(record_id)
-      url = "https://crm.zoho.com/crm/private/json/Leads/getRecordById?&authtoken=4bb51859d4fef47e40261da5b38a0dbb&scope=crmapi&id=612278000000056001"
-      response =  JSON.parse(self.class.get(url).parsed_response)
+      url = "https://crm.zoho.com/crm/private/json/Leads/getRecordById?&authtoken=#{@auth_token}&scope=crmapi&id=#{record_id}"
+      response = JSON.parse(self.class.get(url).parsed_response)
       lead = json_to_fl_hash(response)
       return Zohax::Lead.new(lead)
     end
 
+    def get_request(url)
+      response = JSON.parse(self.class.get(url).parsed_response)
+    end
+
+    def call(entry, api_method, query = {}, http_method = :get)
+      login = {
+        :apikey => api_key,
+        :ticket => ticket
+      }
+      query.merge!(login)
+     url = [zoho_uri, entry, api_method].join('/')
+     case http_method
+      when :get
+        raw = JSON.parse(self.class.get(url, :query => query).parsed_response)
+        parse_raw_get(raw, entry)
+      when :post
+        raw = JSON.parse(self.class.post(url, :body => query).parsed_response)
+        parse_raw_post(raw)
+      else
+        raise "#{http_method} is not a recognized http method"
+      end
+    end
+
+    private
+
+    def parse_data(data, entry)
+      fl = data.map {|e| Hash['val', e[0], 'content', e[1]]}
+      row = Hash['no', '1', 'FL', fl]
+      data = Hash['row', row]
+      XmlSimple.xml_out(data, :RootName => entry)
+    end
   end
 
 end
