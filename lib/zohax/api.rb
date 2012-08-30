@@ -40,14 +40,18 @@ module Zohax
       response = JSON.parse(self.class.get(url).parsed_response)
     end
 
+    def zoho_uri
+      zoho_uri = "https://crm.zoho.com/crm/private/json"
+    end
+
     def call(entry, api_method, query = {}, http_method = :get)
       login = {
-        :apikey => api_key,
-        :ticket => ticket
+        :authtoken => @auth_token,
+        :scope => "crmapi"
       }
       query.merge!(login)
-     url = [zoho_uri, entry, api_method].join('/')
-     case http_method
+      url = [zoho_uri, entry, api_method].join('/')
+      case http_method
       when :get
         raw = JSON.parse(self.class.get(url, :query => query).parsed_response)
         parse_raw_get(raw, entry)
@@ -60,6 +64,26 @@ module Zohax
     end
 
     private
+
+    def parse_raw_get(raw, entry)
+      return [] if raw['response']['result'].nil?
+      rows = raw['response']['result'][entry]['row'] 
+      rows = [rows] unless rows.class == Array
+      rows.map {|i|
+        raw_to_hash i['FL']
+      }
+    end
+
+    def raw_to_hash(raw)
+      raw.map! {|r| [r['val'], r['content']]}
+      Hash[raw]
+    end
+    
+    def parse_raw_post(raw)
+      return [] if raw['response']['result'].nil?
+      record = raw['response']['result']['recorddetail'] 
+      raw_to_hash record['FL']
+    end
 
     def parse_data(data, entry)
       fl = data.map {|e| Hash['val', e[0], 'content', e[1]]}
