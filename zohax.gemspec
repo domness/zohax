@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'zohax'
-  s.version = '0.0.0'
+  s.version = '0.0.1'
   s.date = '2012-08-30'
   s.summary = "Zoho"
   s.description = "Zoho ruby gem"
