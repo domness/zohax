@@ -15,4 +15,16 @@ describe "Zohax::Api" do
     @api.get_token
     @api.auth_token.should_not be_nil
   end
+
+  describe "with auth token" do
+    before :all do
+      @api.get_token
+    end
+
+    it "gets a record" do
+      record_id = "661735000000053022"
+      record = @api.get_record_by_id(record_id)
+      record.class.should == Zohax::Lead
+    end
+  end
 end
