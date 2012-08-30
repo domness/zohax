@@ -21,12 +21,17 @@ module Zohax
       @auth_token = response.match(/\sAUTHTOKEN=(.*)\s/)[1] if response.match(/\sAUTHTOKEN=(.*)\s/)
     end
 
+    def json_to_fl_hash(response)
+      fl = response["response"]["result"]["Leads"]["row"]["FL"]
+      data = {}
+      fl.each { |column| data["#{column["val"].to_s}"] = column["content"] }
+      return data
+    end
+
     def get_record_by_id(record_id)
       url = "https://crm.zoho.com/crm/private/json/Leads/getRecordById?&authtoken=4bb51859d4fef47e40261da5b38a0dbb&scope=crmapi&id=612278000000056001"
       response =  JSON.parse(self.class.get(url).parsed_response)
-      fl = response["response"]["result"]["Leads"]["row"]["FL"]
-      lead = {}
-      fl.each { |column| lead["#{column["val"].to_s}"] = column["content"] }
+      lead = json_to_fl_hash(response)
       return Zohax::Lead.new(lead)
     end
 
