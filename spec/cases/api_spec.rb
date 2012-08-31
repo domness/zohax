@@ -37,6 +37,9 @@ describe "Zohax::Api" do
     describe :get_record_by_id do
       it "gets a record" do
         record_id = "612278000000056001"
+        @api.class.stub_chain(:get, :parsed_response)
+        response = { "response" => { "result" => { "Leads" => { "row" => { "FL" => [{ "val" => "foo", "content" => "bar" }] }}}}}
+        JSON.stub(:parse).and_return(response)
         record = @api.get_record_by_id(record_id)
         record.class.should == Zohax::Lead
       end
