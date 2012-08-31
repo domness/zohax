@@ -27,6 +27,7 @@ describe "Zohax::Api" do
       @api = Zohax::Api.new(@username, @password, @token)
       @response = { "response" => { "result" => { "Leads" => { "row" => { "FL" => [ {"val" => "foo", "content" => "bar" }]}}}}}
     end
+
     describe :json_to_fl_hash do
       it "turns the data into an FL hash" do
         returned_data = @api.json_to_fl_hash(@response)
