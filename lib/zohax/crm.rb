@@ -16,6 +16,11 @@ module Zohax
       record['Id']
     end
 
+    def update_lead(data, record_id)
+      xmlData = parse_data(data, 'Leads')
+      record = @api.call('Leads', 'updateRecords', {:xmlData => xmlData, :newFormat => 1, :id => record_id}, :post)
+    end
+
     private
 
     def parse_data(data, entry)
