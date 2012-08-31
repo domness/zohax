@@ -7,4 +7,5 @@ gem "xml-simple"
 group :development do
   gem "rspec"
   gem "bundler"
+  gem "jeweler"
 end
