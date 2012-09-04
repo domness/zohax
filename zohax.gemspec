@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'zohax'
-  s.version = '0.0.2'
+  s.version = '0.0.3'
   s.date = '2012-09-04'
   s.summary = "Zoho Ruby Gem"
   s.description = "Zoho ruby gem allowing to make changes to a Zoho CRM."
