@@ -8,6 +8,7 @@ module Zohax
 
     def initialize(username, password, token)
       @api = Zohax::Api.new(username, password, token)
+      @api.get_token
     end
 
     def add_lead(data)
