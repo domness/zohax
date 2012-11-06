@@ -27,6 +27,22 @@ module Zohax
       @data["Last Name"]
     end
 
+    def email
+      @data["Email"]
+    end
+
+    def phone
+      @data["Phone"]
+    end
+
+    def fax
+      @data["Fax"]
+    end
+
+    def mobile
+      @data["mobile"]
+    end
+
     def full_name
       "#{first_name} #{last_name}"
     end
