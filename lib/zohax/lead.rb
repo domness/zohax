@@ -3,8 +3,12 @@ module Zohax
   class Lead
     attr_accessor :data
 
-    def initialize(data)
-      @data = data
+    def initialize(*data)
+      if data.size == 0
+        @data = {}
+      else
+        @data = data[0]
+      end
     end
 
     def lead_id
