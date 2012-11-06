@@ -7,6 +7,7 @@ Gem::Specification.new do |s|
   s.authors = ["Dominic Wroblewski"]
   s.email = "domness@gmail.com"
   s.files = ["lib/zohax.rb"]
+  s.require_paths = ["lib"]
   s.homepage = "https://github.com/domness/zohax"
   s.add_dependency('json')
   s.add_dependency('httparty')
