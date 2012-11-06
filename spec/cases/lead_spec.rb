@@ -26,6 +26,26 @@ describe "Zohax::Lead" do
     lead.last_name.should == "Doe"
   end
 
+  it "has an email" do
+    lead = Zohax::Lead.new({ "Email" => "test@test.com" })
+    lead.email.should == "test@test.com"
+  end
+
+  it "has a phone" do
+    lead = Zohax::Lead.new({ "Phone" => "1234567" })
+    lead.phone.should == "1234567"
+  end
+
+  it "has a fax" do
+    lead = Zohax::Lead.new({ "Fax" => "1234567" })
+    lead.fax.should == "1234567"
+  end
+
+  it "has a mobile" do
+    lead = Zohax::Lead.new({ "Mobile" => "1234567" })
+    lead.mobile.should == "1234567"
+  end
+
   it "has a full name" do
     lead = Zohax::Lead.new({ "First Name" => "John", "Last Name" => "Doe" })
     lead.full_name.should == "John Doe"
