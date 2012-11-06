@@ -7,10 +7,16 @@ module Zohax
 
     attr_reader :auth_token
 
-    def initialize(username, password, auth_token)
+    def initialize(username, password, auth_token = nil)
       @username = username
       @password = password
       @auth_token = auth_token
+
+      # If we aren't provided an auth_token then we should attempt
+      # to authenticate.
+      if auth_token.nil?
+        self.get_token
+      end
     end
 
     def auth_url

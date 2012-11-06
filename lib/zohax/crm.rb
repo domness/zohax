@@ -6,9 +6,8 @@ module Zohax
   class Crm
     include HTTParty
 
-    def initialize(username, password, token)
+    def initialize(username, password, token = nil)
       @api = Zohax::Api.new(username, password, token)
-      @api.get_token
     end
 
     def add_lead(data)
