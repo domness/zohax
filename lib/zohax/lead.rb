@@ -119,6 +119,14 @@ module Zohax
       @data["City"] = str
     end
 
+    def state
+      @data["State"]
+    end
+
+    def state=(str)
+      @data["State"] = str
+    end
+
     def full_name
       "#{first_name} #{last_name}"
     end
