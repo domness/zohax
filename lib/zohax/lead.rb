@@ -151,6 +151,14 @@ module Zohax
       @data["No of Employees"] = str
     end
 
+    def email_opt_out
+      @data["Email Opt Out"]
+    end
+
+    def email_opt_out=(str)
+      @data["Email Opt Out"] = str
+    end
+
     def full_name
       "#{first_name} #{last_name}"
     end

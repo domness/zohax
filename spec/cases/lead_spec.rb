@@ -142,6 +142,14 @@ describe "Zohax::Lead" do
     can_change_its("no_of_employees")
   end
 
+  it "has an email opt out" do
+    test_has_a("Email Opt Out", "email_opt_out")
+  end
+
+  it "can change its email opt out" do
+    can_change_its("email_opt_out")
+  end
+
   it "has a full name" do
     lead = Zohax::Lead.new({ "First Name" => "John", "Last Name" => "Doe" })
     lead.full_name.should == "John Doe"
