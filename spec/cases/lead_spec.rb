@@ -11,9 +11,7 @@ describe "Zohax::Lead" do
   end
 
   it "can change its lead owner" do
-    lead = Zohax::Lead.new
-    lead.lead_owner = "Jane Doe"
-    lead.lead_owner.should == "Jane Doe"
+    can_change_its("lead_owner")
   end
 
   it "has a company" do
@@ -21,9 +19,7 @@ describe "Zohax::Lead" do
   end
 
   it "can change its company" do
-    lead = Zohax::Lead.new
-    lead.company = "EI"
-    lead.company.should == "EI"
+    can_change_its("company")
   end
 
   it "has a website" do
@@ -31,9 +27,7 @@ describe "Zohax::Lead" do
   end
 
   it "can change its website" do
-    lead = Zohax::Lead.new
-    lead.website = "http://google.com"
-    lead.website.should == "http://google.com"
+    can_change_its("website")
   end
 
   it "has a first name" do
@@ -41,9 +35,7 @@ describe "Zohax::Lead" do
   end
 
   it "can change its first name" do
-    lead = Zohax::Lead.new
-    lead.first_name = "John"
-    lead.first_name.should == "John"
+    can_change_its("first_name")
   end
 
   it "has a last name" do
@@ -51,9 +43,7 @@ describe "Zohax::Lead" do
   end
 
   it "can change its last name" do
-    lead = Zohax::Lead.new
-    lead.last_name = "Doe"
-    lead.last_name.should == "Doe"
+    can_change_its("last_name")
   end
 
   it "has a title" do
@@ -61,9 +51,7 @@ describe "Zohax::Lead" do
   end
 
   it "can change its title" do
-    lead = Zohax::Lead.new
-    lead.title = "Director"
-    lead.title.should == "Director"
+    can_change_its("title")
   end
 
   it "has an email" do
@@ -71,9 +59,7 @@ describe "Zohax::Lead" do
   end
 
   it "can change its email" do
-    lead = Zohax::Lead.new
-    lead.email = "test@test.com"
-    lead.email.should == "test@test.com"
+    can_change_its("email")
   end
 
   it "has a phone" do
@@ -81,9 +67,7 @@ describe "Zohax::Lead" do
   end
 
   it "can change its phone" do
-    lead = Zohax::Lead.new
-    lead.phone = "1234567"
-    lead.phone.should == "1234567"
+    can_change_its("phone")
   end
 
   it "has a fax" do
@@ -91,9 +75,7 @@ describe "Zohax::Lead" do
   end
 
   it "can change its fax" do
-    lead = Zohax::Lead.new
-    lead.fax = "1234567"
-    lead.fax.should == "1234567"
+    can_change_its("fax")
   end
 
   it "has a mobile" do
@@ -101,9 +83,7 @@ describe "Zohax::Lead" do
   end
 
   it "can change its mobile" do
-    lead = Zohax::Lead.new
-    lead.mobile = "1234567"
-    lead.mobile.should == "1234567"
+    can_change_its("mobile")
   end
 
   it "has a country" do
@@ -111,9 +91,7 @@ describe "Zohax::Lead" do
   end
 
   it "can change its country" do
-    lead = Zohax::Lead.new
-    lead.country = "USA"
-    lead.country.should == "USA"
+    can_change_its("country")
   end
 
   it "has a street" do
@@ -121,9 +99,7 @@ describe "Zohax::Lead" do
   end
 
   it "can change its street" do
-    lead = Zohax::Lead.new
-    lead.street = "123 Easy St"
-    lead.street.should == "123 Easy St"
+    can_change_its("street")
   end
 
   it "has a city" do
@@ -131,9 +107,7 @@ describe "Zohax::Lead" do
   end
 
   it "can change its city" do
-    lead = Zohax::Lead.new
-    lead.city = "Atlanta"
-    lead.city.should == "Atlanta"
+    can_change_its("city")
   end
 
   it "has a full name" do
@@ -145,6 +119,12 @@ describe "Zohax::Lead" do
 
   def test_has_a(xml_name, field)
     lead = Zohax::Lead.new({ xml_name => "Booyan" })
+    lead.send(field).should == "Booyan"
+  end
+
+  def can_change_its(field)
+    lead = Zohax::Lead.new
+    lead.send(field + "=", "Booyan")
     lead.send(field).should == "Booyan"
   end
 end
