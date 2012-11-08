@@ -103,6 +103,14 @@ module Zohax
       @data["Country"] = str
     end
 
+    def street
+      @data["Street"]
+    end
+
+    def street=(str)
+      @data["Street"] = str
+    end
+
     def full_name
       "#{first_name} #{last_name}"
     end

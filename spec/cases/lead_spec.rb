@@ -127,6 +127,17 @@ describe "Zohax::Lead" do
     lead.country.should == "USA"
   end
 
+  it "has a street" do
+    lead = Zohax::Lead.new({ "Street" => "123 Easy St" })
+    lead.street.should == "123 Easy St"
+  end
+
+  it "can change its street" do
+    lead = Zohax::Lead.new
+    lead.street = "123 Easy St"
+    lead.street.should == "123 Easy St"
+  end
+
   it "has a full name" do
     lead = Zohax::Lead.new({ "First Name" => "John", "Last Name" => "Doe" })
     lead.full_name.should == "John Doe"
