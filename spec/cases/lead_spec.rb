@@ -61,6 +61,17 @@ describe "Zohax::Lead" do
     lead.last_name.should == "Doe"
   end
 
+  it "has a title" do
+    lead = Zohax::Lead.new({ "Title" => "Director" })
+    lead.title.should == "Director"
+  end
+
+  it "can change its title" do
+    lead = Zohax::Lead.new
+    lead.title = "Director"
+    lead.title.should == "Director"
+  end
+
   it "has an email" do
     lead = Zohax::Lead.new({ "Email" => "test@test.com" })
     lead.email.should == "test@test.com"

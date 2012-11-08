@@ -55,6 +55,14 @@ module Zohax
       @data["Last Name"] = str
     end
 
+    def title
+      @data["Title"]
+    end
+
+    def title=(str)
+      @data["Title"] = str
+    end
+
     def email
       @data["Email"]
     end
