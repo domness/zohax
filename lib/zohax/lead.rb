@@ -31,6 +31,14 @@ module Zohax
       @data["Company"] = str
     end
 
+    def website
+      @data["Website"]
+    end
+
+    def website=(str)
+      @data["Website"] = str
+    end
+
     def first_name
       @data["First Name"]
     end

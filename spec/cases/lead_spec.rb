@@ -28,6 +28,17 @@ describe "Zohax::Lead" do
     lead.company.should == "EI"
   end
 
+  it "has a website" do
+    lead = Zohax::Lead.new({ "Website" => "http://google.com" })
+    lead.website.should == "http://google.com"
+  end
+
+  it "can change its website" do
+    lead = Zohax::Lead.new
+    lead.website = "http://google.com"
+    lead.website.should == "http://google.com"
+  end
+
   it "has a first name" do
     lead = Zohax::Lead.new({ "First Name" => "John" })
     lead.first_name.should == "John"
