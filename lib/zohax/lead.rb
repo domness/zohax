@@ -111,6 +111,14 @@ module Zohax
       @data["Street"] = str
     end
 
+    def city
+      @data["City"]
+    end
+
+    def city=(str)
+      @data["City"] = str
+    end
+
     def full_name
       "#{first_name} #{last_name}"
     end

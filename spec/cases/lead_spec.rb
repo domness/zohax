@@ -138,6 +138,17 @@ describe "Zohax::Lead" do
     lead.street.should == "123 Easy St"
   end
 
+  it "has a city" do
+    lead = Zohax::Lead.new({ "City" => "Atlanta" })
+    lead.city.should == "Atlanta"
+  end
+
+  it "can change its city" do
+    lead = Zohax::Lead.new
+    lead.city = "Atlanta"
+    lead.city.should == "Atlanta"
+  end
+
   it "has a full name" do
     lead = Zohax::Lead.new({ "First Name" => "John", "Last Name" => "Doe" })
     lead.full_name.should == "John Doe"
