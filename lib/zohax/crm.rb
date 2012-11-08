@@ -14,6 +14,10 @@ module Zohax
       @api.call('Leads', 'getRecords', queryParameters, :get)
     end
 
+    def search_leads(searchConditions)
+      @api.call('Leads', 'getSearchRecords', searchConditions, :get)
+    end
+
     def add_lead(data)
       xmlData = parse_data(data, 'Leads')
       record = @api.call('Leads', 'insertRecords', {:xmlData => xmlData, :newFormat => 1}, :post)
