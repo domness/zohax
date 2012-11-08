@@ -127,6 +127,14 @@ module Zohax
       @data["State"] = str
     end
 
+    def zip_code
+      @data["Zip Code"]
+    end
+
+    def zip_code=(str)
+      @data["Zip Code"] = str
+    end
+
     def full_name
       "#{first_name} #{last_name}"
     end
