@@ -143,6 +143,14 @@ module Zohax
       @data["Annual Revenue"] = str
     end
 
+    def no_of_employees
+      @data["No of Employees"]
+    end
+
+    def no_of_employees=(str)
+      @data["No of Employees"] = str
+    end
+
     def full_name
       "#{first_name} #{last_name}"
     end

@@ -134,6 +134,14 @@ describe "Zohax::Lead" do
     can_change_its("annual_revenue")
   end
 
+  it "has a no of employees" do
+    test_has_a("No of Employees", "no_of_employees")
+  end
+
+  it "can change its no of employees" do
+    can_change_its("no_of_employees")
+  end
+
   it "has a full name" do
     lead = Zohax::Lead.new({ "First Name" => "John", "Last Name" => "Doe" })
     lead.full_name.should == "John Doe"
