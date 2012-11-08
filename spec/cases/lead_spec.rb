@@ -126,6 +126,14 @@ describe "Zohax::Lead" do
     can_change_its("zip_code")
   end
 
+  it "has an annual revenue" do
+    test_has_a("Annual Revenue", "annual_revenue")
+  end
+
+  it "can change its annual revenue" do
+    can_change_its("annual_revenue")
+  end
+
   it "has a full name" do
     lead = Zohax::Lead.new({ "First Name" => "John", "Last Name" => "Doe" })
     lead.full_name.should == "John Doe"

@@ -135,6 +135,14 @@ module Zohax
       @data["Zip Code"] = str
     end
 
+    def annual_revenue
+      @data["Annual Revenue"]
+    end
+
+    def annual_revenue=(str)
+      @data["Annual Revenue"] = str
+    end
+
     def full_name
       "#{first_name} #{last_name}"
     end
