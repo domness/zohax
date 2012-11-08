@@ -116,6 +116,17 @@ describe "Zohax::Lead" do
     lead.mobile.should == "1234567"
   end
 
+  it "has a country" do
+    lead = Zohax::Lead.new({ "Country" => "USA" })
+    lead.country.should == "USA"
+  end
+
+  it "can change its country" do
+    lead = Zohax::Lead.new
+    lead.country = "USA"
+    lead.country.should == "USA"
+  end
+
   it "has a full name" do
     lead = Zohax::Lead.new({ "First Name" => "John", "Last Name" => "Doe" })
     lead.full_name.should == "John Doe"

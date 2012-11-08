@@ -95,6 +95,14 @@ module Zohax
       @data["Mobile"] = str
     end
 
+    def country
+      @data["Country"]
+    end
+
+    def country=(str)
+      @data["Country"] = str
+    end
+
     def full_name
       "#{first_name} #{last_name}"
     end
