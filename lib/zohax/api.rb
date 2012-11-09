@@ -32,7 +32,7 @@ module Zohax
         @auth_token = response.match(/\sAUTHTOKEN=(.*)\s/)[1]
       else
         error = response.match(/\sCAUSE=(.*)\s/)[1]
-        raise new Zohax::AuthenticationFailedError.new(error)
+        raise Zohax::AuthenticationFailedError.new(error)
       end
     end
 
