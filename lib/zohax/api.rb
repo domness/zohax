@@ -28,7 +28,7 @@ module Zohax
     def get_token
       response = self.class.get(auth_url).parsed_response
 
-      if response.match(/\sAUTHTOKEN=(.*)\s/)
+      if response =~ /\sAUTHTOKEN=(.*)\s/
         @auth_token = response.match(/\sAUTHTOKEN=(.*)\s/)[1]
       else
         error = response.match(/\sCAUSE=(.*)\s/)[1]
