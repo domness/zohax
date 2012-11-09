@@ -2,6 +2,8 @@ module Zohax
   require 'httparty'
   require 'json'
 
+  class AuthenticationFailedError < StandardError; end
+
   class Api
     include HTTParty
 
@@ -25,7 +27,13 @@ module Zohax
 
     def get_token
       response = self.class.get(auth_url).parsed_response
-      @auth_token = response.match(/\sAUTHTOKEN=(.*)\s/)[1] if response.match(/\sAUTHTOKEN=(.*)\s/)
+
+      if response.match(/\sAUTHTOKEN=(.*)\s/)
+        @auth_token = response.match(/\sAUTHTOKEN=(.*)\s/)[1]
+      else
+        error = response.match(/\sCAUSE=(.*)\s/)[1]
+        raise new Zohax::AuthenticationFailedError.new(error)
+      end
     end
 
     def json_to_fl_hash(response)
