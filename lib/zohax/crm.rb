@@ -6,8 +6,16 @@ module Zohax
   class Crm
     include HTTParty
 
-    def initialize(username, password, token)
+    def initialize(username, password, token = nil)
       @api = Zohax::Api.new(username, password, token)
+    end
+
+    def find_leads(queryParameters)
+      @api.call('Leads', 'getRecords', queryParameters, :get)
+    end
+
+    def search_leads(searchConditions)
+      @api.call('Leads', 'getSearchRecords', searchConditions, :get)
     end
 
     def add_lead(data)

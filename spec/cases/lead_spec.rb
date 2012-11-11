@@ -7,27 +7,164 @@ describe "Zohax::Lead" do
   end
 
   it "has a lead owner" do
-    lead = Zohax::Lead.new({ "Lead Owner" => "Jane Doe" })
-    lead.lead_owner.should == "Jane Doe"
+    test_has_a("Lead Owner", "lead_owner")
+  end
+
+  it "can change its lead owner" do
+    can_change_its("lead_owner")
   end
 
   it "has a company" do
-    lead = Zohax::Lead.new({ "Company" => "EI" })
-    lead.company.should == "EI"
+    test_has_a("Company", "company")
+  end
+
+  it "can change its company" do
+    can_change_its("company")
+  end
+
+  it "has a website" do
+    test_has_a("Website", "website")
+  end
+
+  it "can change its website" do
+    can_change_its("website")
   end
 
   it "has a first name" do
-    lead = Zohax::Lead.new({ "First Name" => "John" })
-    lead.first_name.should == "John"
+    test_has_a("First Name", "first_name")
+  end
+
+  it "can change its first name" do
+    can_change_its("first_name")
   end
 
   it "has a last name" do
-    lead = Zohax::Lead.new({ "Last Name" => "Doe" })
-    lead.last_name.should == "Doe"
+    test_has_a("Last Name", "last_name")
+  end
+
+  it "can change its last name" do
+    can_change_its("last_name")
+  end
+
+  it "has a title" do
+    test_has_a("Title", "title")
+  end
+
+  it "can change its title" do
+    can_change_its("title")
+  end
+
+  it "has an email" do
+    test_has_a("Email", "email")
+  end
+
+  it "can change its email" do
+    can_change_its("email")
+  end
+
+  it "has a phone" do
+    test_has_a("Phone", "phone")
+  end
+
+  it "can change its phone" do
+    can_change_its("phone")
+  end
+
+  it "has a fax" do
+    test_has_a("Fax", "fax")
+  end
+
+  it "can change its fax" do
+    can_change_its("fax")
+  end
+
+  it "has a mobile" do
+    test_has_a("Mobile", "mobile")
+  end
+
+  it "can change its mobile" do
+    can_change_its("mobile")
+  end
+
+  it "has a country" do
+    test_has_a("Country", "country")
+  end
+
+  it "can change its country" do
+    can_change_its("country")
+  end
+
+  it "has a street" do
+    test_has_a("Street", "street")
+  end
+
+  it "can change its street" do
+    can_change_its("street")
+  end
+
+  it "has a city" do
+    test_has_a("City", "city")
+  end
+
+  it "can change its city" do
+    can_change_its("city")
+  end
+
+  it "has a state" do
+    test_has_a("State", "state")
+  end
+
+  it "can change its state" do
+    can_change_its("state")
+  end
+
+  it "has a zip code" do
+    test_has_a("Zip Code", "zip_code")
+  end
+
+  it "can change its zip code" do
+    can_change_its("zip_code")
+  end
+
+  it "has an annual revenue" do
+    test_has_a("Annual Revenue", "annual_revenue")
+  end
+
+  it "can change its annual revenue" do
+    can_change_its("annual_revenue")
+  end
+
+  it "has a no of employees" do
+    test_has_a("No of Employees", "no_of_employees")
+  end
+
+  it "can change its no of employees" do
+    can_change_its("no_of_employees")
+  end
+
+  it "has an email opt out" do
+    test_has_a("Email Opt Out", "email_opt_out")
+  end
+
+  it "can change its email opt out" do
+    can_change_its("email_opt_out")
   end
 
   it "has a full name" do
     lead = Zohax::Lead.new({ "First Name" => "John", "Last Name" => "Doe" })
     lead.full_name.should == "John Doe"
+  end
+
+  private
+
+  def test_has_a(xml_name, field)
+    lead = Zohax::Lead.new({ xml_name => "Booyan" })
+    lead.send(field).should == "Booyan"
+  end
+
+  def can_change_its(field)
+    lead = Zohax::Lead.new
+    lead.send(field + "=", "Booyan")
+    lead.send(field).should == "Booyan"
   end
 end

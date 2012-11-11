@@ -2,15 +2,23 @@ module Zohax
   require 'httparty'
   require 'json'
 
+  class AuthenticationFailedError < StandardError; end
+
   class Api
     include HTTParty
 
     attr_reader :auth_token
 
-    def initialize(username, password, auth_token)
+    def initialize(username, password, auth_token = nil)
       @username = username
       @password = password
       @auth_token = auth_token
+
+      # If we aren't provided an auth_token then we should attempt
+      # to authenticate.
+      if auth_token.nil?
+        self.get_token
+      end
     end
 
     def auth_url
@@ -19,7 +27,13 @@ module Zohax
 
     def get_token
       response = self.class.get(auth_url).parsed_response
-      @auth_token = response.match(/\sAUTHTOKEN=(.*)\s/)[1] if response.match(/\sAUTHTOKEN=(.*)\s/)
+
+      if response =~ /\sAUTHTOKEN=(.*)\s/
+        @auth_token = response.match(/\sAUTHTOKEN=(.*)\s/)[1]
+      else
+        error = response.match(/\sCAUSE=(.*)\s/)[1]
+        raise Zohax::AuthenticationFailedError.new(error)
+      end
     end
 
     def json_to_fl_hash(response)
