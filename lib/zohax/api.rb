@@ -7,7 +7,7 @@ module Zohax
   class Api
     include HTTParty
 
-    attr_reader :auth_token
+    attr_reader :auth_token, :username, :password
 
     def initialize(username, password, auth_token = nil)
       @username = username
