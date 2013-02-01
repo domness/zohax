@@ -6,11 +6,12 @@ describe "Zohax::Api" do
     @password = "zohotest"
     @token = "c9515d642d1557bf354f082c23e86a5f"
   end
-
+  
   describe "without auth token" do
     before :all do
       @api = Zohax::Api.new(@username, @password, @token)
     end
+    
     it "should store the auth URL" do
       @api.auth_url.should == "https://accounts.zoho.com/apiauthtoken/nb/create?SCOPE=ZohoCRM/crmapi&EMAIL_ID=test@terracoding.com&PASSWORD=zohotest"
     end
@@ -19,6 +20,11 @@ describe "Zohax::Api" do
       @api.class.stub_chain(:get, :parsed_response).and_return("\nAUTHTOKEN=0123456789\n")
       @api.get_token
       @api.auth_token.should_not be_nil
+    end
+    
+    it "should have basic info available" do
+      @api.username.should eq(@username)
+      @api.password.should eq(@password)
     end
   end
 
